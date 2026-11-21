@@ -18,12 +18,14 @@ public final class Webservice {
     private final String host;
     private final int port;
     private final String consul;
+    private final String service;
 
-    public Webservice(String id, String host, int port, String consul) {
+    public Webservice(String id, String host, int port, String consul, String service) {
         this.id = id;
         this.host = host;
         this.port = port;
         this.consul = consul;
+        this.service = service;
     }
 
     public void start() throws IOException, InterruptedException {
@@ -38,7 +40,7 @@ public final class Webservice {
     }
 
     private void init(JavalinConfig config) {
-        config.routes.get("/", this::fibonacci);
+        config.routes.get("/", this::powers);
         config.routes.get("/health", this::health);
     }
 
@@ -46,20 +48,16 @@ public final class Webservice {
         context.result("OK");
     }
 
-    private void fibonacci(Context context) {
+    private void powers(Context context) {
         int terms = Integer.parseInt(context.queryParam("n"));
         context.header("X-Node", id);
-        context.result(new Gson().toJson(fibonacci(terms)));
+        context.result(new Gson().toJson(powers(terms)));
     }
 
-    private int[] fibonacci(int n) {
+    private int[] powers(int n) {
         int[] result = new int[n];
-        int a = 0;
-        int b = 1;
         for (int i = 0; i < n; i++) {
-            result[i] = a;
-            a = b;
-            b += result[i];
+            result[i] = Math.powExact(2, i);
         }
         return result;
     }
@@ -105,7 +103,7 @@ public final class Webservice {
     private String json() {
         return new Gson().toJson(Map.of(
                 "ID", id,
-                "Name", "fibonacci_service_v1",
+                "Name", service,
                 "Address", host(),
                 "Port", port,
                 "Check", Map.of(

@@ -32,7 +32,7 @@ public class Main {
     }
 
     private static HttpRequest request(int terms) {
-        return HttpRequest.newBuilder(URI.create(address).resolve("/api/v1/fibonacci/?n=" + terms))
+        return HttpRequest.newBuilder(URI.create(address).resolve("/powers/?n=" + terms))
                 .timeout(Duration.ofSeconds(5))
                 .GET()
                 .build();

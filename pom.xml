@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>fibonacci-service</module>
-        <module>fibonacci-client</module>
+        <module>powers-service</module>
+        <module>powers-client</module>
     </modules>
 
     <properties>
