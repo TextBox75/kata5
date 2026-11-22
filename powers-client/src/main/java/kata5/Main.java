@@ -14,8 +14,9 @@ public class Main {
     static void main() throws InterruptedException, IOException {
         try (HttpClient client = client()) {
             while (true) {
-                int terms = ThreadLocalRandom.current().nextInt(1, 48);
-                HttpRequest request = request(terms);
+                int terms = ThreadLocalRandom.current().nextInt(1, 15);
+                int service = ThreadLocalRandom.current().nextInt(1, 3);
+                HttpRequest request = request(service, terms);
                 HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
                 showResponse(response);
                 Thread.sleep(100);
@@ -31,8 +32,8 @@ public class Main {
         }
     }
 
-    private static HttpRequest request(int terms) {
-        return HttpRequest.newBuilder(URI.create(address).resolve("/powers/?n=" + terms))
+    private static HttpRequest request(int service, int terms) {
+        return HttpRequest.newBuilder(URI.create(address).resolve("/powers" + service + "/?n=" + terms))
                 .timeout(Duration.ofSeconds(5))
                 .GET()
                 .build();
