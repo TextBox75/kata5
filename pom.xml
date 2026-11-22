@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>powers-service</module>
-        <module>powers-client</module>
+        <module>odd-service</module>
+        <module>odd-client</module>
     </modules>
 
     <properties>
