@@ -9,8 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>odd-service</module>
-        <module>odd-client</module>
+        <module>even-service</module>
+        <module>even-client</module>
     </modules>
 
     <properties>

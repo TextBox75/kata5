@@ -33,7 +33,7 @@ public class Main {
     }
 
     private static HttpRequest request(int service, int terms) {
-        return HttpRequest.newBuilder(URI.create(address).resolve("/odd" + service + "/?n=" + terms))
+        return HttpRequest.newBuilder(URI.create(address).resolve("/even" + service + "/?n=" + terms))
                 .timeout(Duration.ofSeconds(5))
                 .GET()
                 .build();

@@ -57,7 +57,7 @@ public final class Webservice {
     private int[] powers(int n) {
         int[] result = new int[n];
         for (int i = 0; i < n; i++) {
-            result[i] = (i * 2) + 1;
+            result[i] = (i * 2);
         }
         return result;
     }
